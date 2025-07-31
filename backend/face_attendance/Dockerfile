@@ -23,4 +23,5 @@ RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 COPY . /code/
 
 # Default command: run your server on container startup (not during build!)
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]
+CMD ["gunicorn", "face_attendance.wsgi:application", "--bind", "0.0.0.0:8001", "--workers", "3"]
